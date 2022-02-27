@@ -1,0 +1,133 @@
+<%- include('include/_header') %>
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/"><i class="fa fa-home"></i> Home</a>
+                    <a href="#"><%= (productDetail.category).toUpperCase() %>  </a>
+                    <span>Essential structured blazer</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <% if(productDetail) { %>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__slider__content">
+                            <div class="product__details__pic__slider owl-carousel">
+                                <img data-hash="product-1" class="product__big__img" src="data:image/<%=productDetail.img.contentType%>;base64,<%=productDetail.img.data.toString('base64')%>" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="product__details__text">
+                        <h3><%= productDetail.title %>  <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <span>( 138 reviews )</span>
+                        </div>
+                        <div class="product__details__price">$ <%= (parseFloat(productDetail.cost)).toFixed(1) %>  <span>$ <%= (parseFloat(productDetail.cost)*1.2).toFixed(1) %> </span></div>
+                        <div class="product__details__button">
+                            
+                            <a href="/shopCart" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                        </div>
+                        <div class="product__details__widget">
+                            <ul>
+                                <li>
+                                    <span>Sex:</span>
+                                    <div class="stock__checkbox">
+                                        <label for="stockin">
+                                            <%= (productDetail.sex).toUpperCase() %> 
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>Availability:</span>
+                                    <div class="stock__checkbox">
+                                        <label for="stockin">
+                                            <%= (productDetail.status).toUpperCase() %> 
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span>Promotions:</span>
+                                    <p>Free shipping</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <h6>Description</h6>
+                                <p><%= productDetail.description %> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% } %>  
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="related__title">
+                    <h5>RELATED PRODUCTS</h5>
+                </div>
+            </div>
+            <% if(products) { %>
+                <% for(let i = 0 ; i < products.length ; i++) { %> 
+                    <% if(i < 4) { %>
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg" data-setbg="data:image/<%=products[i].img.contentType%>;base64,<%=products[i].img.data.toString('base64')%>">
+                                    <div class="label <%= products[i].status %>"><%= products[i].status %> </div>
+                                    <ul class="product__hover">
+                                        <li><a href="data:image/<%=products[i].img.contentType%>;base64,<%=products[i].img.data.toString('base64')%>" class="image-popup"><span
+                                                    class="arrow_expand"></span></a></li>
+                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="/productDetail/<%= products[i].id %> "><span class="icon_bag_alt"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><a href="#"><%= products[i].title %> </a></h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <div class="product__price">$ <%= (parseFloat(products[i].cost)).toFixed(1) %> </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>  
+                <% } %> 
+            <% } %>  
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+<%- include('include/_footer') %>

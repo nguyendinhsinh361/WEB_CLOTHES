@@ -1,0 +1,39 @@
+<% products.forEach(function(product){ %>
+<div class="col-lg-4 col-md-6">
+    <div class="product__item">
+        <div class="product__item__pic set-bg"
+            data-setbg="data:image/<%=product.img.contentType%>;base64,<%=product.img.data.toString('base64')%>">
+            <div class="label <%= product.status %>">
+                <%= product.status %>
+            </div>
+            <ul class="product__hover">
+                <li><a href="data:image/<%=product.img.contentType%>;base64,<%=product.img.data.toString('base64')%>"
+                        class="image-popup"><span class="arrow_expand"></span></a></li>
+                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+            </ul>
+        </div>
+        <div class="product__item__text">
+            <h6><a href="#">
+                    <%= product.title %>
+                </a></h6>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+            </div>
+            <div class="product__price">$ <%= (parseFloat(product.cost)).toFixed(1) %></div>
+        </div>
+        <div class="product__item__text" id="action">
+
+            <a href="./shopAdmin/edit/<%= product._id %>" class="btn btn-dark btn-block mb-2">Update</a>
+            <form action="./shopAdmin/<%= product._id %>?_method=delete" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Delete" class="btn btn-danger btn-block">
+            </form>
+        </div>
+    </div>
+</div>
+<%})%>
